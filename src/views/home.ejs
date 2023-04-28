@@ -1,0 +1,75 @@
+<%- include('header.ejs'); %>
+    <div class="container mt-3">
+        <div class="d-flex align-items-center">
+            <h3>Tarefas</h3>
+            <a class="mx-3" href="/task">Criar Tarefa</a>
+        </div>
+
+        <div class="mt-4 table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <th scope="col">#</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Prioridade</th>
+                    <th scope="col">Data de Abertura</th>
+                    <th scope="col">Responsável</th>
+                </thead>
+                <tbody>
+
+                    <% if (locals.tasks) { %>
+                        <% let tasksLength=10 %>
+                            <% if (locals.tasks.length < 10) { %>
+                                <% tasksLength=locals.tasks.length %>
+                                    <% } %>
+                                        <% for( let index=0; index < tasksLength; index++ ) { %>
+                                            <% if (locals.tasks[index].isUserLoggedIn) { %>
+                                                <tr class="table-warning">
+                                                    <% } else { %>
+                                                <tr>
+                                                    <% } %>
+                                                        <th scope="row"><a href=<%=`/task/${locals.tasks[index].id}` %>>
+                                                                <%= locals.tasks[index].id %>
+                                                            </a></th>
+                                                        <td>
+                                                            <%= locals.tasks[index].title %>
+                                                        </td>
+                                                        <td>
+                                                            <%= locals.tasks[index].type %>
+                                                        </td>
+                                                        <td>
+                                                            <%= locals.tasks[index].priority %>
+                                                        </td>
+                                                        <td>
+                                                            <%= locals.tasks[index].openingDate %>
+                                                        </td>
+                                                        <td>
+                                                            <%= locals.tasks[index].user %>
+                                                        </td>
+                                                </tr>
+                                                <% } %>
+                                                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-center">
+            <% if (locals.count) { %>
+                <% let pagesCount=(Math.floor(Number(locals.count) / 10)) + 1 %>
+                    <% let start=1 %>
+                        <% if (pagesCount> 10) { %>
+                            <% start=(pagesCount - 9) %>
+                                <% } %>
+                                    <% for( let index=start; index <=pagesCount; index++ ) { %>
+                                        <% if (locals.page && locals.page==index) { %>
+                                            <%= index %>
+                                                <% } else { %>
+                                                    <a class="mx-2" href=<%=`/home/${index}` %>><%= index %></a>
+                                                    <% } %>
+                                                        <% } %>
+                                                            <% } %>
+        </div>
+    </div>
+    </body>
+
+    </html>

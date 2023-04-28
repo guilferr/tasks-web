@@ -1,0 +1,79 @@
+<%- include('header.ejs'); %>
+    <div class="container mt-3">
+        <div class="d-flex align-items-center">
+            <h3>Inserir Tarefa</h3>
+        </div>
+
+        <div class="pt-4">
+            <form class="form-horizontal" method="post" action="/task">
+                <div class="form-row d-flex align-items-center justify-content-between">
+                    <div class="form-group col-md-5">
+                        <label for="title" class="cols-sm-2 control-label">Título*</label>
+                        <div class="input-group mt-2">
+                            <span class="input-group-addon"><i class="fa fa-font" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control rounded mb-3" name="title" id="title"
+                                placeholder="Digite o título da tarefa" required />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="type" class="cols-sm-2 control-label">Tipo*</label>
+                        <div class="input-group mt-2">
+                            <span class="input-group-addon"><i class="fa fa-tasks" aria-hidden="true"></i></span>
+                            <select class="form-control rounded mb-3" name="type" id="type" required>
+                                <option selected>Selecione um tipo</option>
+                                <% if (locals.types) { %>
+                                    <% for( let i=0; i < locals.types.length; i++ ) { %>
+                                        <option value=<%=locals.types[i].id %>><%= locals.types[i].description %>
+                                        </option>
+                                        <% } %>
+                                            <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="priority" class="cols-sm-2 control-label">Prioridade*</label>
+                        <div class="input-group mt-2">
+                            <span class="input-group-addon"><i class="fa fa-tasks" aria-hidden="true"></i></span>
+                            <select class="form-control rounded mb-3" name="priority" id="priority" required>
+                                <option selected>Selecione uma prioridade</option>
+                                <% if (locals.priorities) { %>
+                                    <% for( let i=0; i < locals.priorities.length; i++ ) { %>
+                                        <option value=<%=locals.priorities[i].id %>><%= locals.priorities[i].description
+                                                %>
+                                        </option>
+                                        <% } %>
+                                            <% } %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description" class="cols-sm-2 control-label">Descrição</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group mt-2">
+                            <span class="input-group-addon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                            <textarea class="form-control rounded mb-3" name="description" id="description" rows="15"
+                                placeholder="Descreva a tarefa aqui" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="location.href = '/home';">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+            <div class="alert alert-primary message" role="alert">
+
+                <% if (locals.errors) { %>
+                    <%= errors.message %>
+                        <% } %>
+            </div>
+        </div>
+        </body>
+
+        </html>
