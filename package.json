@@ -1,8 +1,10 @@
 {
-  "name": "qa-jr-00723-2023-073.127.743-00",
+  "name": "tasks-web",
   "version": "1.0.0",
-  "description": "QA Test Project",
+  "description": "Tasks scheduling project",
   "main": "dist/src/server.js",
+  "author": "Guilherme Ferreira <https://github.com/guilferr>",
+  "license": "MIT",
   "scripts": {
     "tsc": "tsc",
     "copy-assets": "ts-node tools/copyAssets",
@@ -15,16 +17,6 @@
     "typeorm": "typeorm-ts-node-esm -d ./src/orm/database/data-source.ts",
     "prepare": "husky install"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SENAI-SD/QA-JR-00723-2023-073.127.743-00.git"
-  },
-  "author": "Guilherme Ferreira <https://github.com/guilferr>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/SENAI-SD/QA-JR-00723-2023-073.127.743-00/issues"
-  },
-  "homepage": "https://github.com/SENAI-SD/QA-JR-00723-2023-073.127.743-00#readme",
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^17.6.1",
