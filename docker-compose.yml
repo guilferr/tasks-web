@@ -2,7 +2,7 @@ services :
   app:
     image: my-app
     ports:
-      - "3001:3001"
+      - "${PORT}:${PORT}"
   db:
     image: postgres
     ports:
