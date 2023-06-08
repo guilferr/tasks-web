@@ -26,6 +26,22 @@ ou, com o Yarn (caso esteja instalado):
 yarn dev
 ```
 
+## Utilize com Docker
+
+1. Copie o arquivo .env.example na raiz do projeto e renomeie-o para .env
+2. Altere o valor das variáveis para seu ambiente.
+	> A variável TOKEN_KEY receberá uma palavra a sua escolha
+	> As variáveis DB_HOST e DB_PORT devem ter os valores: db e 5432
+3. Construa a imagem da aplicação:
+```sh
+docker build . -t my-app
+```
+4. Em seguida, construa os contêineres:
+```sh
+docker compose up -d
+```
+5. A aplicação estará sendo executada na porta configurada no arquivo env
+
 ## Libs Adicionadas
 
 ### Dev dependencies
